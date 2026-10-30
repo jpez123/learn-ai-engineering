@@ -54,7 +54,7 @@ export default function App() {
 					if (output?.elementId && output.updates) {
 						const current = excalidrawAPI.getSceneElements();
 						const next = current.map((el) => {
-							el.id === output.elementId ? newElementWith(el, output.updates as any) : el;
+							return el.id === output.elementId ? newElementWith(el, output.updates as any) : el;
 						}) as any;
 
 						excalidrawAPI.updateScene({
