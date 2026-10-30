@@ -43,24 +43,24 @@ export default function App() {
 						const elements = convertToExcalidrawElements(skeletonElements, { regenerateIds: false });
 						excalidrawAPI.updateScene({ elements });
 						excalidrawAPI.scrollToContent(elements, { fitToContent: true });
-					} else if (part.type === 'tool-modifyDiagram') {
-						appliedToolCalls.current.add(part.toolCallId);
-						const output = part.output as {
-							elementId?: string;
-							updates?: Record<string, any>;
-						};
+					}
+				} else if (part.type === 'tool-modifyDiagram') {
+					appliedToolCalls.current.add(part.toolCallId);
+					const output = part.output as {
+						elementId?: string;
+						updates?: Record<string, any>;
+					};
 
-						if (output?.elementId && output.updates) {
-							const current = excalidrawAPI.getSceneElements();
-							const next = current.map((el) => {
-								el.id === output.elementId ? newElementWith(el, output.updates as any) : el;
-							}) as any;
+					if (output?.elementId && output.updates) {
+						const current = excalidrawAPI.getSceneElements();
+						const next = current.map((el) => {
+							el.id === output.elementId ? newElementWith(el, output.updates as any) : el;
+						}) as any;
 
-							excalidrawAPI.updateScene({
-								elements: next,
-								captureUpdate: CaptureUpdateAction.IMMEDIATELY,
-							});
-						}
+						excalidrawAPI.updateScene({
+							elements: next,
+							captureUpdate: CaptureUpdateAction.IMMEDIATELY,
+						});
 					}
 				}
 			}

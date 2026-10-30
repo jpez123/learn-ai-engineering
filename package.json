@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@ai-sdk/openai": "^4.0.97",
+		"@ai-sdk/react": "^4.0.161",
 		"@cloudflare/ai-chat": "^0.12.1",
 		"@excalidraw/excalidraw": "^0.18.0",
 		"agents": "^0.28.1",
